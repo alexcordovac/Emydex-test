@@ -35,7 +35,10 @@ namespace FarmSystem.Test1.FarmSystem
         public void MakeNoise()
         {
             //Test 2 : Modify this method to make the animals talk
-            Console.WriteLine("There are no animals in the farm");
+            foreach (Animal animal in this.Animals)
+            {
+                animal.Talk();
+            }
         }
 
         //TEST 3

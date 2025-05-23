@@ -11,7 +11,7 @@ namespace FarmSystem.Test1
         private static void Main(string[] args)
         {
             Excercise1();
-            //Excercise2();
+            Excercise2();
             //Excercise3();
             //Excercise4();
             Console.ReadKey();
@@ -27,7 +27,7 @@ Sheep has entered the farm
 ***************************************************************************************************************/
         private static void Excercise1()
         {
-            Console.WriteLine("Exercise 1 : Press any key when it is time to open the Farm to animals");
+            Console.WriteLine("\nExercise 1 : Press any key when it is time to open the Farm to animals");
             Console.ReadKey();
             Console.WriteLine("");
 
@@ -59,29 +59,16 @@ Sheep has entered the farm
         private static void Excercise2()
         {
             //TODO : Apply OOP concepts and modify the code below to get the required output 
-            Console.WriteLine("Exercise 2 : Press any key to scare the animals in the farm");
+            Console.WriteLine("\nExercise 2 : Press any key to scare the animals in the farm");
             Console.ReadKey();
-            var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
-            cow.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(cow);
+            Console.WriteLine("");
 
-            Hen hen = new Hen();
-            hen.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(hen);
+            IEmydexFarmSystem farm = new EmydexFarmSystem();
+            farm.Enter(new Cow());
+            farm.Enter(new Hen());
+            farm.Enter(new Horse());
+            farm.Enter(new Sheep());
 
-            Horse horse = new Horse();
-            horse.Id = Guid.NewGuid().ToString();
-            horse.NoOfLegs = 4;
-            farm.Enter(horse);
-
-            Sheep sheep = new Sheep();
-            sheep.Id = Guid.NewGuid().ToString();
-            sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
-            
             farm.MakeNoise();
             Console.ReadKey();
         }
