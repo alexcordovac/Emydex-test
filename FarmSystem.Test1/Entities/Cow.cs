@@ -1,8 +1,9 @@
-﻿using System;
+﻿using FarmSystem.Test2.Interfaces;
+using System;
 
 namespace FarmSystem.Test1.Entities
 {
-    class Cow : Animal
+    class Cow : Animal, IMilkableAnimal
     {
         public Cow()
         {

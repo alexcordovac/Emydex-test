@@ -1,7 +1,9 @@
 ﻿using FarmSystem.Test1.Entities;
 using FarmSystem.Test1.Interfaces;
+using FarmSystem.Test2.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FarmSystem.Test1.FarmSystem
 {
@@ -44,7 +46,12 @@ namespace FarmSystem.Test1.FarmSystem
         //TEST 3
         public void MilkAnimals()
         {
-            Console.WriteLine("Cannot identify the farm animals which can be milked");
+            var milkableAnimals = this.Animals.Where(animal => animal is IMilkableAnimal);
+
+            foreach (IMilkableAnimal animal in milkableAnimals)
+            {
+                animal.ProduceMilk();
+            }
         }
 
         //TEST 4

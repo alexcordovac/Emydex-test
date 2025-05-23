@@ -12,7 +12,7 @@ namespace FarmSystem.Test1
         {
             Excercise1();
             Excercise2();
-            //Excercise3();
+            Excercise3();
             //Excercise4();
             Console.ReadKey();
         }
@@ -31,11 +31,7 @@ Sheep has entered the farm
             Console.ReadKey();
             Console.WriteLine("");
 
-            IEmydexFarmSystem farm = new EmydexFarmSystem();
-            farm.Enter(new Cow());
-            farm.Enter(new Hen());
-            farm.Enter(new Horse());
-            farm.Enter(new Sheep());
+            IEmydexFarmSystem farm = InitializeFarm();
 
             Console.ReadKey();
         }
@@ -63,11 +59,7 @@ Sheep has entered the farm
             Console.ReadKey();
             Console.WriteLine("");
 
-            IEmydexFarmSystem farm = new EmydexFarmSystem();
-            farm.Enter(new Cow());
-            farm.Enter(new Hen());
-            farm.Enter(new Horse());
-            farm.Enter(new Sheep());
+            IEmydexFarmSystem farm = InitializeFarm();
 
             farm.MakeNoise();
             Console.ReadKey();
@@ -91,28 +83,11 @@ Cow was milked!
         private static void Excercise3()
         {
             //TODO : Apply OOP concepts and modify the code below to get the required output 
-            Console.WriteLine("Exercise 3 : Press any key when it is time to milk animals");
+            Console.WriteLine("\nExercise 3 : Press any key when it is time to milk animals");
             Console.ReadKey();
-            var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
-            cow.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(cow);
+            Console.WriteLine("");
 
-            Hen hen = new Hen();
-            hen.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(hen);
-
-            Horse horse = new Horse();
-            horse.Id = Guid.NewGuid().ToString();
-            horse.NoOfLegs = 4;
-            farm.Enter(horse);
-
-            Sheep sheep = new Sheep();
-            sheep.Id = Guid.NewGuid().ToString();
-            sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
+            IEmydexFarmSystem farm = InitializeFarm();
 
             farm.MilkAnimals();
             Console.ReadKey();
@@ -165,6 +140,22 @@ Emydex Farm is now empty
 
             farm.ReleaseAllAnimals();
             Console.ReadKey();
+        }
+
+
+        /// <summary>
+        /// Get the animals inside the farm
+        /// </summary>
+        /// <returns>IEmydexFarmSystem that represents the Farm system full with animals</returns>
+        private static IEmydexFarmSystem InitializeFarm()
+        {
+            IEmydexFarmSystem farm = new EmydexFarmSystem();
+            farm.Enter(new Cow());
+            farm.Enter(new Hen());
+            farm.Enter(new Horse());
+            farm.Enter(new Sheep());
+
+            return farm;
         }
 
     }
