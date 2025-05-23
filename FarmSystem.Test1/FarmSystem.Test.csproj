@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\Cow.cs" />
+    <Compile Include="Events\FarmEmptyChangedEvent.cs" />
     <Compile Include="Events\FarmEmptyChangedEventArgs.cs" />
     <Compile Include="FarmSystem\EmydexFarmSystem.cs" />
     <Compile Include="Entities\Entity.cs" />

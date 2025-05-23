@@ -1,4 +1,5 @@
 ﻿using FarmSystem.Test1.Entities;
+using FarmSystem.Test1.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace FarmSystem.Test1.Interfaces
 {
     public interface IEmydexFarmSystem
     {
-        event FarmEmptyChangedHandler FarmEmptyChanged;
+        FarmEmptyChangedEvent FarmEmptyChanged { get; set; }
         void Enter(Animal animal);
         void MakeNoise();
         void MilkAnimals();

@@ -17,20 +17,18 @@ namespace FarmSystem.Test1.FarmSystem
 
         #region PROPERTIES
         private Queue<Animal> animals;
-
         public Queue<Animal> Animals
         {
             get { return animals; }
             set { animals = value; }
         }
-        #endregion
 
-        #region EVENTS
-        //signature for the event (return datatype and arguments)
-        public delegate void FarmEmptyChangedHandler(object sender, FarmEmptyChangedEventArgs args);
-
-        //event for notifying when animals are released from the farm
-        public event FarmEmptyChangedHandler FarmEmptyChanged;
+        private FarmEmptyChangedEvent farmEmptyChanged = new FarmEmptyChangedEvent();
+        public FarmEmptyChangedEvent FarmEmptyChanged
+        {
+            get { return farmEmptyChanged; }
+            set { farmEmptyChanged = value; }
+        }
 
         #endregion
 
@@ -77,16 +75,7 @@ namespace FarmSystem.Test1.FarmSystem
             }
 
             this.Animals.Clear();
-            this.OnFarmEmptyChanged(new FarmEmptyChangedEventArgs(animalsReleased));
-        }
-
-        /// <summary>
-        /// Raise the event when all animals have left the farm
-        /// </summary>
-        /// <param name="args">AnimalsReleasedChangedEventArgs containing the animals released</param>
-        private void OnFarmEmptyChanged(FarmEmptyChangedEventArgs args)
-        {
-            this.FarmEmptyChanged?.Invoke(this, args);
+            this.FarmEmptyChanged.OnFarmEmptyChanged(this, new FarmEmptyChangedEventArgs(animalsReleased));
         }
 
         #endregion

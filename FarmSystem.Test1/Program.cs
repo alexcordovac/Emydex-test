@@ -124,7 +124,7 @@ Emydex Farm is now empty
             IEmydexFarmSystem farm = InitializeFarm();
 
             //subscribe to the event when the farm is fully empty en do something with the released animals
-            farm.FarmEmptyChanged += (sender, animalsReleased) => { Console.WriteLine("Emydex Farm is now empty"); };
+            farm.FarmEmptyChanged.Subscribe((sender, animalsReleased) => Console.WriteLine("Emydex Farm is now empty"));
 
             farm.ReleaseAllAnimals();
             Console.ReadKey();
