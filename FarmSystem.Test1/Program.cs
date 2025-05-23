@@ -13,7 +13,9 @@ namespace FarmSystem.Test1
             Excercise1();
             Excercise2();
             Excercise3();
-            //Excercise4();
+            Excercise4();
+
+            Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
         }
 
@@ -115,28 +117,14 @@ Emydex Farm is now empty
         private static void Excercise4()
         {
             //TODO : Apply OOP concepts and modify the code below to get the required output 
-            Console.WriteLine("Exercise 4: Press any key to free all animals");
+            Console.WriteLine("\nExercise 4: Press any key to free all animals");
             Console.ReadKey();
-            var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
-            cow.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(cow);
+            Console.WriteLine("");
 
-            Hen hen = new Hen();
-            hen.Id = Guid.NewGuid().ToString();
-            cow.NoOfLegs = 4;
-            farm.Enter(hen);
+            IEmydexFarmSystem farm = InitializeFarm();
 
-            Horse horse = new Horse();
-            horse.Id = Guid.NewGuid().ToString();
-            horse.NoOfLegs = 4;
-            farm.Enter(horse);
-
-            Sheep sheep = new Sheep();
-            sheep.Id = Guid.NewGuid().ToString();
-            sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
+            //subscribe to the event when the farm is fully empty en do something with the released animals
+            farm.FarmEmptyChanged += (sender, animalsReleased) => { Console.WriteLine("Emydex Farm is now empty"); };
 
             farm.ReleaseAllAnimals();
             Console.ReadKey();

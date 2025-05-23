@@ -1,4 +1,5 @@
 ﻿using FarmSystem.Test1.Entities;
+using FarmSystem.Test1.Events;
 using FarmSystem.Test1.Interfaces;
 using FarmSystem.Test2.Interfaces;
 using System;
@@ -23,6 +24,17 @@ namespace FarmSystem.Test1.FarmSystem
             set { animals = value; }
         }
         #endregion
+
+        #region EVENTS
+        //signature for the event (return datatype and arguments)
+        public delegate void FarmEmptyChangedHandler(object sender, FarmEmptyChangedEventArgs args);
+
+        //event for notifying when animals are released from the farm
+        public event FarmEmptyChangedHandler FarmEmptyChanged;
+
+        #endregion
+
+        #region METHODS
 
         //TEST 1
         public void Enter(Animal animal)
@@ -57,7 +69,26 @@ namespace FarmSystem.Test1.FarmSystem
         //TEST 4
         public void ReleaseAllAnimals()
         {
-           Console.WriteLine("There are still animals in the farm, farm is not free");
+            var animalsReleased = new Queue<Animal>(this.Animals);
+
+            foreach (Animal animal in this.Animals)
+            {
+                Console.WriteLine($"{animal.GetType().Name} has left the farm");
+            }
+
+            this.Animals.Clear();
+            this.OnFarmEmptyChanged(new FarmEmptyChangedEventArgs(animalsReleased));
         }
+
+        /// <summary>
+        /// Raise the event when all animals have left the farm
+        /// </summary>
+        /// <param name="args">AnimalsReleasedChangedEventArgs containing the animals released</param>
+        private void OnFarmEmptyChanged(FarmEmptyChangedEventArgs args)
+        {
+            this.FarmEmptyChanged?.Invoke(this, args);
+        }
+
+        #endregion
     }
 }
