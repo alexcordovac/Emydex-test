@@ -1,15 +1,34 @@
-﻿using System;
+﻿using FarmSystem.Test1.Entities;
+using FarmSystem.Test1.Interfaces;
+using System;
+using System.Collections.Generic;
 
-namespace FarmSystem.Test1
+namespace FarmSystem.Test1.FarmSystem
 {
-    public class EmydexFarmSystem
+    public class EmydexFarmSystem : IEmydexFarmSystem
     {
+        public EmydexFarmSystem()
+        {
+            this.Animals = new Queue<Animal>();
+        }
+
+        #region PROPERTIES
+        private Queue<Animal> animals;
+
+        public Queue<Animal> Animals
+        {
+            get { return animals; }
+            set { animals = value; }
+        }
+        #endregion
+
         //TEST 1
-        public void Enter(object animal)
+        public void Enter(Animal animal)
         {
             //TODO Modify the code so that we can display the type of animal (cow, sheep etc) 
             //Hold all the animals so it is available for future activities
-            Console.WriteLine("Animal has entered the Emydex farm");
+            this.Animals.Enqueue(animal);
+            Console.WriteLine($"{animal.GetType().Name} has entered the farm");
         }
      
         //TEST 2
