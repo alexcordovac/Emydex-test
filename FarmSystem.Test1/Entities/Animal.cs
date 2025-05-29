@@ -9,17 +9,12 @@ namespace FarmSystem.Test1.Entities
     public abstract class Animal : Entity
     {
         #region PROPERTIES
-        private int _noOfLegs = 4;
+        private int _noOfLegs;
+
         public int NoOfLegs
         {
-            get
-            {
-                return _noOfLegs;
-            }
-            set
-            {
-                _noOfLegs = 4;
-            }
+            get { return _noOfLegs; }
+            set { _noOfLegs = value; }
         }
         #endregion
 
