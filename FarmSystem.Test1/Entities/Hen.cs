@@ -6,7 +6,7 @@ namespace FarmSystem.Test1.Entities
     {
         public Hen()
         {
-            this.NoOfLegs = 4;
+            this.NoOfLegs = 2;
         }
 
         #region METHODS
